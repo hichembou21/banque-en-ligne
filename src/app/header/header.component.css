@@ -1,0 +1,15 @@
+.logo {
+    margin: 50px 0;
+}
+
+.div-img {
+    background-color: rgb(215, 226, 240);
+    margin: 0;
+    margin-bottom: 40px;
+    text-align:center
+}
+
+.logo-text {
+    color: blue;
+    background-color: #eceaea;
+}

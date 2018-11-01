@@ -1,0 +1,59 @@
+<div class="container row spacer">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="card border-secondary spacer">
+            <div class="card-header">
+              Operation
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                
+                  <label class="radio-inline spacer2">
+                    <input type="radio" [(ngModel)]="typeOperation" value="crediter">
+                    Versement  
+                  </label>
+                                
+                  <label class="radio-inline spacer2"> 
+                    <input type="radio" [(ngModel)]="typeOperation" value="debiter"> 
+                    Retrait 
+                  </label>
+                                        
+                  <label class="radio-inline spacer2"> 
+                    <input type="radio" [(ngModel)]="typeOperation" value="virement">
+                    Virement  
+                  </label>
+                  <div class="form-group">
+                    <label>Montant :</label>
+                    <input type="text" [(ngModel)]="montant">
+                  </div>                                 
+              </div>
+
+              <a (click)="addOperation()" class="btn btn-primary">Ok</a>
+            </div>
+      </div>
+  </div>
+
+  <div class="col-md-8 col-sm-8 col-xs-12" *ngIf="operations">
+    <div class="card border-secondary spacer">
+      <div class="card-header">List Operations </div>
+    
+      <div class="card-body">
+      <table class="table">
+          <thead>
+              <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Date Operation</th>
+                <th scope="col">Montant</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let op of operations.operations; index as i">
+                <th scope="row">{{op.numero}}</th>
+                <td>{{op.dateOperation | date: 'dd/MM/yyyy h:mm a' }}</td>
+                <td>{{op.montant}} €</td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

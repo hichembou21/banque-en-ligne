@@ -1,0 +1,57 @@
+<section>
+  <div class="container row spacer">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="card border-secondary spacer">
+      <div class="card-header"> Compte </div>
+      <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="inputCodeCompte">Code Compte</label>
+                <input type="text" class="form-control" id="inputCodeCompte" aria-describedby="emailHelp" placeholder="Enter code compte"
+                        [(ngModel)]="codeCompte" [ngModelOptions]="{standalone: true}" >
+            </div>
+            
+            <button type="submit" class="btn btn-primary" (click)="search()">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div *ngIf="compte">
+        <div class="card border-secondary spacer">
+            <div class="card-header">Info Compte </div>
+        
+            <div class="card-body">
+            
+                    <h5 *ngIf="compte.type_compte == 'CC'">Compte Courrant</h5>
+                    <h5 *ngIf="compte.type_compte == 'CE'">Compte Epargne</h5>
+                    <div>
+                      <label>Date Creation : </label>
+                      <label>{{compte.dateCreation | date: 'dd/MM/yyyy h:mm a' }}</label>
+                    </div>
+                    <div>
+                      <label>Solde : </label>
+                      <label>{{compte.solde}} €</label> 
+                    </div>
+                    <div *ngIf="compte.taux">
+                      <label>Taux : </label>
+                      <label>{{compte.taux}} €</label> 
+                    </div> 
+                    <div *ngIf="compte.decouvert">
+                      <label>Decouvert : </label>
+                      <label>{{compte.decouvert}} €</label> 
+                    </div>              
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>    
+
+  <div *ngIf="operations">
+    <app-operations (onClickAddEvent)="research($event)">
+    </app-operations>
+  </div>
+
+</section>
+
