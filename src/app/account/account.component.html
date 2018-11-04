@@ -1,10 +1,10 @@
 <section>
     <div class="container mt-2">
       <span class="px-2">
-        <button type="button" class="btn btn-primary" *ngIf="isEmploye" >Consulter Compte</button>
+        <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="showCompte()">Consulter Compte</button>
       </span>
       <span>
-        <button type="button" class="btn btn-primary" *ngIf="isEmploye">Ajouter Client</button>
+        <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="addClient()">Ajouter Client</button>
       </span>
     </div>
     <div class="container mt-3">

@@ -37,7 +37,14 @@ export class AccountComponent implements OnInit {
     //   console.log(this.isEmploye);
     // });   
     this.isEmploye = this.authService.isEmploye();
-    console.log(this.isEmploye);
+  }
+
+  showCompte() {
+    this.router.navigateByUrl('/compte');
+  }
+
+  addClient() {
+    this.router.navigateByUrl('/add-client');
   }
 
 }

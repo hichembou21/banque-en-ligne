@@ -18,7 +18,7 @@
   </div>
 
   <div class="col-md-6 col-sm-6 col-xs-12">
-    <div *ngIf="compte">
+    <div *ngIf="compte!=null">
         <div class="card border-secondary spacer">
             <div class="card-header">Info Compte </div>
         
@@ -48,10 +48,80 @@
   </div>
   </div>    
 
-  <div *ngIf="operations">
-    <app-operations (onClickAddEvent)="research($event)">
-    </app-operations>
-  </div>
+  <div class="container row spacer" *ngIf="compte">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="card border-secondary spacer">
+                <div class="card-header">
+                  Operation
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    
+                      <label class="radio-inline spacer2">
+                        <input type="radio" [(ngModel)]="typeOperation" value="crediter">
+                        Versement  
+                      </label>
+                                    
+                      <label class="radio-inline spacer2"> 
+                        <input type="radio" [(ngModel)]="typeOperation" value="debiter"> 
+                        Retrait 
+                      </label>
+                                            
+                      <label class="radio-inline spacer2"> 
+                        <input type="radio" [(ngModel)]="typeOperation" value="virement">
+                        Virement  
+                      </label>
+                      <div class="form-group">
+                        <label>Montant :</label>
+                        <input type="text" [(ngModel)]="montant">
+                      </div>                                 
+                  </div>
+    
+                  <a class="btn btn-primary" (click)="addOperation()">Ok</a>
+                </div>
+          </div>
+      </div>
+    
+      <div class="col-md-8 col-sm-8 col-xs-12" *ngIf="operations">
+        <div class="card border-secondary spacer">
+          <div class="card-header">List Operations </div>
+        
+          <div class="card-body">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Date Operation</th>
+                    <th scope="col">Montant</th>
+                    <th scope="col">Type</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let op of operations.operations; index as i">
+                    <th scope="row">{{op.numero}}</th>
+                    <td>{{op.dateOperation | date: 'dd/MM/yyyy h:mm a' }}</td>
+                    <td>{{op.montant}} €</td>
+                    <td>{{op.type_ops}}</td>
+
+                  </tr>
+              </tbody>
+          </table>
+          </div>
+          <div>
+            <nav aria-label="..." class="mr-4">
+              <ul class="pagination justify-content-end">
+                
+                <li [ngClass]="{active : i==currentPage}" *ngFor="let page of totalPages; index as i" class="page-item clickable">
+                  <a class="page-link" (click)="goToPage(i)">{{i}}</a>
+                </li>
+                
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
 </section>
 

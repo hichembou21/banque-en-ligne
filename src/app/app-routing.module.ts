@@ -6,11 +6,13 @@ import { ComptesComponent } from './comptes/comptes.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { NewClientComponent } from './new-client/new-client.component';
 
 const routes:Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'compte', component: ComptesComponent },
+  { path: 'add-client', component: NewClientComponent },
   { path: 'account', component: AccountComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent },

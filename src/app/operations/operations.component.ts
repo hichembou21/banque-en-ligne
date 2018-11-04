@@ -14,7 +14,7 @@ export class OperationsComponent implements OnInit {
   compte;
   typeOperation:string = "crediter";
   montant:number;
-  @Output() onClickAddEvent: EventEmitter<string> = new EventEmitter;
+  @Output() onClickAddOp: EventEmitter<any> = new EventEmitter();
 
   constructor(private operationService:OperationsService, private compteService:CompteService) 
   {   }
@@ -29,12 +29,10 @@ export class OperationsComponent implements OnInit {
   }
 
   addOperation() {
-    // this.compte = this.compteServie.compte;
     this.operationService.addOperation(this.compte.code,this.typeOperation,this.montant).subscribe();
     
-    this.onClickAddEvent.emit(this.compte.code);
+    this.onClickAddOp.emit(this.compte.code);
 
-    console.log("add operation");
   }
 
   // onClick() {

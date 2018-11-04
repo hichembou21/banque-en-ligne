@@ -25,6 +25,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("isLogged");
     this.setJwtToken(null);
     this.setIsLogged(false);
     this.setUser(null);
@@ -50,6 +51,12 @@ export class AuthenticationService {
   }
 
   getIsLogged() {
+
+    let isLogged = JSON.parse(localStorage.getItem("isLogged"))
+    if (isLogged) {
+      this.isLogged.next(isLogged);
+      return this.isLogged;
+    }
     return this.isLogged;
   }
 
@@ -58,11 +65,13 @@ export class AuthenticationService {
   // }
 
   setIsLogged(isLogged) {
+    localStorage.setItem("isLogged", JSON.stringify(isLogged));
     this.isLogged.next(isLogged);
   }
 
-  loadToken() {
+  loadToken():string {
     this.setJwtToken(JSON.parse(localStorage.getItem("token")));
+    return this.jwtToken;
   }
 
   getJwtToken() {
