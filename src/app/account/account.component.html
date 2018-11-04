@@ -1,10 +1,19 @@
 <section>
-    <div>
-      <button class="btn btn-primary">Consulter Compte</button>
-      <button class="btn btn-primary">Ajouter Client</button>
+    <div class="container mt-2">
+      <span class="px-2">
+        <button type="button" class="btn btn-primary" *ngIf="isEmploye" >Consulter Compte</button>
+      </span>
+      <span>
+        <button type="button" class="btn btn-primary" *ngIf="isEmploye">Ajouter Client</button>
+      </span>
     </div>
-    <div class="alert alert-danger">
-        <strong>Account Welcome {{user.username}}</strong>
+    <div class="container mt-3">
+      <div class="card">
+        <div class="card-header bg-info">Welcome</div>
+        <div class="card-body">
+            <strong>Welcome {{user.username}}</strong>
+        </div>
+      </div>
     </div>
 
   <!-- <table class="table" *ngIf="clients">

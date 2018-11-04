@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(user).subscribe(response =>{
         let jwtToken = response.headers.get('Authorization');
         this.authService.saveToken(jwtToken);
+        this.authService.setIsLogged(true);
         this.router.navigateByUrl("/account");
         this.authService.setUser(user);
     }, error => {

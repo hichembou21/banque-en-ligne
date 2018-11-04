@@ -23,9 +23,9 @@ export class OperationsService {
   private baseUrl:string = "http://localhost:8080/operations";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) { 
-    this.authService.getJwtToken().subscribe(jwt =>{
-      this.jwtToken = jwt;
-    })
+   
+    this.jwtToken = this.authService.getJwtToken();
+  
   }
 
   getOperationsOfCompte(codeCompte) {
