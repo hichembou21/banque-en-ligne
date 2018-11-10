@@ -56,7 +56,7 @@ export class ClientService {
         })
       };
 
-      return this.httpClient.post(this.baseUrl+"employe",user,
+      return this.httpClient.post(this.baseUrl+"employes",user,
         httpOptions)
       .pipe(tap(res => {
       this.status = res; 

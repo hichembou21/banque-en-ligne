@@ -15,6 +15,7 @@ export class AuthenticationService {
   private isEmpl = new BehaviorSubject<boolean>(false);
   private isAdm = new BehaviorSubject<boolean>(false);
   private roles:Array<any> = [];
+  private message:string; 
   private host:string = "http://localhost:8080";
 
   constructor(private httpClient : HttpClient) { }
@@ -129,5 +130,13 @@ export class AuthenticationService {
       }
     }
     return this.isAdm;
+  }
+
+  getMessage() {
+    return this.message;
+  }
+
+  setMessage(message) {
+    this.message = message;
   }
 }

@@ -16,17 +16,22 @@ export class NewEmployeComponent implements OnInit {
   constructor(private clientService : ClientService, private router : Router, private authService : AuthenticationService) { }
 
   ngOnInit() {
-    this.employeSup = this.authService.getUser();
+    // this.employeSup = this.authService.getUser();
+    // console.log(this.employeSup);
+
   }
 
   onRegisration(employe) {
-    // this.clientService.addEmploye(employe).subscribe(res => {
-    //   this.router.navigateByUrl("/account");
-    // }, error => {
-    //   this.errorMessage = error.error;
-    //   console.log(employe);
-    // });
-    console.log(employe);
+
+    employe.employeSup = this.authService.getUser();
+    this.clientService.addEmploye(employe).subscribe(res => {
+      console.log(employe);
+      this.authService.setMessage("Employé ajouter avec succés");
+      console.log(this.authService.getMessage());
+      this.router.navigateByUrl("/account");
+    }, error => {
+      this.errorMessage = error.error;
+    });
   }
 
 }

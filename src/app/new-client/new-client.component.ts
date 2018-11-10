@@ -23,6 +23,7 @@ export class NewClientComponent implements OnInit {
   onRegisration(user) {
 
     this.clientService.addClient(user).subscribe(res => {
+      this.authService.setMessage("Client ajouter avec succés")
       this.router.navigateByUrl("/account");
     }, error => {
       this.errorMessage = error.error;

@@ -14,6 +14,7 @@ export class AccountComponent implements OnInit {
   username:string;
   isEmploye:boolean;
   isAdmin:boolean;
+  message:string = null;
 
   constructor(private authService:AuthenticationService, private router : Router, private clientService : ClientService) { }
 
@@ -42,6 +43,8 @@ export class AccountComponent implements OnInit {
       this.isAdmin = isAdm;
     });
 
+    this.message = this.authService.getMessage();
+    this.authService.setMessage(null);
   }
 
   showCompte() {

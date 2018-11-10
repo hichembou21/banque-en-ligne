@@ -4,6 +4,9 @@
       <div class="card">
         <div class="card-header bg-info">Welcome</div>
         <div class="card-body">
+            <div class="alert alert-success" *ngIf="message">
+                <strong>{{message}}</strong>
+            </div>
             <div class="container mt-2">
                 <span class="px-2">
                   <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="showCompte()">Consulter Compte</button>
