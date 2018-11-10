@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../services/client.service';
-import { Client } from '../entities/client';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 
@@ -11,32 +10,38 @@ import { Router } from '@angular/router';
 })
 export class AccountComponent implements OnInit {
 
-  user:any;
+  currentUser:any;
+  username:string;
   isEmploye:boolean;
+  isAdmin:boolean;
 
-  constructor(private authService:AuthenticationService, private router : Router) { }
+  constructor(private authService:AuthenticationService, private router : Router, private clientService : ClientService) { }
 
-  ngOnInit() {
-    // this.clientService.getAll().subscribe(value => {
-    //   this.clients = value 
-    //   // console.log(this.produits);
-    // });
-    // console.log("ok Clients"); 
-    this.authService.getUser().subscribe(user =>{
-      this.user = user;
-    });
+  ngOnInit() { 
+
+    this.currentUser = this.authService.getUser();
+    if (this.currentUser == null) {
+        this.username = this.authService.getUsername(); 
+        this.clientService.getOne(this.username).subscribe( response => {
+        this.currentUser = response;
+        this.authService.setUser(this.currentUser);
+          });
+      }   
 
     this.authService.getIsLogged().subscribe(isLogged => {
       if (!isLogged) {
         this.router.navigateByUrl("/login");
       }
-    })
+    });
+  
+    this.authService.isEmploye().subscribe(isEmp => {
+      this.isEmploye = isEmp;
+    });
 
-    // this.authService.getIsEmpl().subscribe(isEmpl => {
-    //   this.isEmploye = isEmpl;
-    //   console.log(this.isEmploye);
-    // });   
-    this.isEmploye = this.authService.isEmploye();
+    this.authService.isAdmin().subscribe(isAdm => {
+      this.isAdmin = isAdm;
+    });
+
   }
 
   showCompte() {
@@ -47,4 +52,12 @@ export class AccountComponent implements OnInit {
     this.router.navigateByUrl('/add-client');
   }
 
+  AddEmploye() {
+    this.router.navigateByUrl('/add-employe');
+  }
+
+  addCompte() {
+    this.router.navigateByUrl('/add-compte');
+
+  }
 }

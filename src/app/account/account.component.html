@@ -1,38 +1,32 @@
-<section>
-    <div class="container mt-2">
-      <span class="px-2">
-        <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="showCompte()">Consulter Compte</button>
-      </span>
-      <span>
-        <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="addClient()">Ajouter Client</button>
-      </span>
-    </div>
-    <div class="container mt-3">
+<section class="account-section">
+
+    <div class="container mt-3" *ngIf="currentUser">
       <div class="card">
         <div class="card-header bg-info">Welcome</div>
         <div class="card-body">
-            <strong>Welcome {{user.username}}</strong>
+            <div class="container mt-2">
+                <span class="px-2">
+                  <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="showCompte()">Consulter Compte</button>
+                </span>
+                <span class="px-2">
+                    <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="addCompte()">Ajouter Compte</button>
+                </span>
+                <span class="px-2">
+                  <button type="button" class="btn btn-primary" *ngIf="isEmploye" (click)="addClient()">Ajouter Client</button>
+                </span>
+                <span class="px-2">
+                  <button type="button" class="btn btn-primary" *ngIf="isAdmin" (click)="AddEmploye()">Ajouter Employé</button>
+                </span>
+            </div>
+            <div class="mt-2">
+              <strong>Welcome {{currentUser.username}}</strong>
+              <p></p>
+              <span>{{currentUser.name}}</span>
+              <p></p>
+              <span *ngIf="currentUser.email">{{currentUser.email}}</span>
+            </div>
         </div>
       </div>
     </div>
-
-  <!-- <table class="table" *ngIf="clients">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Birthdate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let client of clients; index as i">
-          <th scope="row">{{client.id}}</th>
-          <td>{{client.nom}}</td>
-          <td>{{client.prenom}}</td>
-          <td>{{client.dateNaissance |  date :  "dd.MM.y"}}</td>
-        </tr>
-      </tbody>
-    </table> -->
 
 </section>

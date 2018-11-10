@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand logo-text" *ngIf="!isLogged" routerLink="">Ma Banque en Ligne</a>
@@ -13,13 +13,12 @@
         <a class="nav-link" *ngIf="isLogged" routerLink="/account">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">A propos</a>
+        <a class="nav-link" routerLink="/about">A propos</a>
       </li>
     </ul>
     <div *ngIf="isLogged">
-        <strong>Welcome {{user.username}}</strong>
+        <span class="mr-2"><strong>Welcome {{username}}</strong></span>
         <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="onLogout()">Logout</button>
     </div>
-    
   </div>
 </nav>

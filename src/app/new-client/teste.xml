@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><canonicalAttributeDatas><CanonicalAttribute><isSecured>false</isSecured>
+<itemType>CanonicalParty</itemType><name>partyId</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection>
+<isPrimaryKey>true</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured>
+<itemType>CanonicalParty</itemType><name>externalPartyId</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection>
+<isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured>
+<itemType>CanonicalParty</itemType><name>type</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey>
+<type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>role</name><isLocalizable>false</isLocalizable>
+<isCollection>true</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured>
+<itemType>CanonicalParty</itemType><name>name</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey>
+<type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>firstName</name>
+<isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute>
+<CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>lastName</name><isLocalizable>false</isLocalizable>
+<isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured>
+<itemType>CanonicalParty</itemType><name>gender</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey>
+<type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>dateOfBirth</name>
+<isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute>
+<CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>title</name><isLocalizable>false</isLocalizable>
+<isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured>
+<itemType>CanonicalParty</itemType><name>accountGroup</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey>
+<type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>communicationLanguage</name>
+<isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>function</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>department</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>country</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute><CanonicalAttribute><isSecured>false</isSecured><itemType>CanonicalParty</itemType><name>currency</name><isLocalizable>false</isLocalizable><isCollection>false</isCollection><isPrimaryKey>false</isPrimaryKey><type>String</type></CanonicalAttribute></canonicalAttributeDatas>flnadmin@fl

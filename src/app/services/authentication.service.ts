@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -9,9 +8,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthenticationService {
 
-  private user = new BehaviorSubject<any>([])
+  private user:any;
+  private username:string = "";
   private jwtToken:string="";
-  private isLogged=new BehaviorSubject<boolean>(false);
+  private isLogged = new BehaviorSubject<boolean>(false);
+  private isEmpl = new BehaviorSubject<boolean>(false);
+  private isAdm = new BehaviorSubject<boolean>(false);
   private roles:Array<any> = [];
   private host:string = "http://localhost:8080";
 
@@ -26,9 +28,15 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("isLogged");
+    localStorage.removeItem("user");
+    localStorage.removeItem("isEmpl");
+    localStorage.removeItem("isAdm");
+
     this.setJwtToken(null);
     this.setIsLogged(false);
     this.setUser(null);
+    this.isEmpl.next(false);
+    this.isAdm.next(false);
   }
 
   saveToken(jwtToken:string) {
@@ -36,18 +44,37 @@ export class AuthenticationService {
       localStorage.setItem("token", JSON.stringify(jwtToken));
       let jwtHelper = new JwtHelperService();
       this.roles = jwtHelper.decodeToken(this.getJwtToken()).roles;
-      // this.getJwtToken().subscribe(jwt =>{
-      //   this.roles = jwtHelper.decodeToken(jwt).roles;
-      // });
-      // console.log(this.roles);
+      return this.roles;
+  }
+
+  getRoles() {
+      let jwtHelper = new JwtHelperService();
+      this.roles = jwtHelper.decodeToken(this.loadToken()).roles;
+      return this.roles;
   }
 
   getUser() {
+    if (JSON.parse(localStorage.getItem("user"))) {
+      this.user = JSON.parse(localStorage.getItem("user")); 
+    }
     return this.user;
   }
 
   setUser(user) {
-      this.user.next(user);
+      localStorage.setItem("user", JSON.stringify(user));
+      this.user = user;
+  }
+
+  getUsername() {
+    if (JSON.parse(localStorage.getItem("username"))) {
+      this.username = JSON.parse(localStorage.getItem("username")); 
+    }
+    return this.username;
+  }
+
+  setUsername(username) {
+    localStorage.setItem("username", JSON.stringify(username));
+    this.username = username;
   }
 
   getIsLogged() {
@@ -60,9 +87,9 @@ export class AuthenticationService {
     return this.isLogged;
   }
 
-  // getIsEmpl() {
-  //   return this.isEmpl;
-  // }
+  getIsEmpl() {
+    return this.isEmpl;
+  }
 
   setIsLogged(isLogged) {
     localStorage.setItem("isLogged", JSON.stringify(isLogged));
@@ -82,11 +109,25 @@ export class AuthenticationService {
     this.jwtToken = jwtToken;
   }
 
-  isEmploye() {
-    for (let role of this.roles ) {
-      if (role.authority == "EMPLOYE") 
-          return true;
+  isEmploye():BehaviorSubject<boolean> {
+    let roles = this.getRoles();
+    for (let role of roles ) {
+      if (role.authority == "EMPLOYE") {
+        this.isEmpl.next(true);
+        return this.isEmpl;
+      } 
     }
-    return false;
+    return this.isEmpl;
+  }
+
+  isAdmin():BehaviorSubject<boolean> {
+    let roles = this.getRoles();
+    for (let role of roles ) {
+      if (role.authority == "ADMIN") {
+        this.isAdm.next(true);
+        return this.isAdm
+      }
+    }
+    return this.isAdm;
   }
 }

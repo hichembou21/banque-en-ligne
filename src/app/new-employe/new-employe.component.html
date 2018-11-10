@@ -5,7 +5,7 @@
         </div>
        
         <div class="card">
-            <div class="card-header bg-primary">Registration Client </div>
+            <div class="card-header bg-primary">Ajout Nouveau Employé </div>
             <div class="card-body">
                     <form #f="ngForm" (ngSubmit)="onRegisration(f.value)">
                         <div class="form-group">
@@ -29,15 +29,11 @@
                                     ngModel name="confirmPassword" #password="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="inputLogin" class="control-label">Email</label>
-                            <input type="email" class="form-control" id="inputLogin" aria-describedby="emailHelp" placeholder="Enter Your Email"
-                                    ngModel name="email" #email="ngModel">
+                            
+                            <input type="hidden" class="form-control" id="inputPassword" placeholder="Confirm Password"
+                                    ngModel name="employeSup" #password="ngModel">
                         </div>
-                        <div class="form-group">
-                            <label for="inputLogin" class="control-label">Birthdate</label>
-                            <input type="date" class="form-control" id="inputLogin" aria-describedby="emailHelp" placeholder="Enter Your Birthdate"
-                                    ngModel name="birthdate" #birthdate="ngModel">
-                        </div>
+                        
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
             </div>

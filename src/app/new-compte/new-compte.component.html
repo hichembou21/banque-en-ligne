@@ -1,0 +1,53 @@
+<div class="col-md-6 spacer3">
+    <section class="container">
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          <strong>{{errorMessage.message}}</strong>
+        </div>
+       
+        <div class="card">
+            <div class="card-header bg-primary">New Compte </div>
+            <div class="card-body" *ngIf="registerForm">
+                    <form [formGroup]="registerForm" (ngSubmit)="onAddCompte()">
+                        <div class="form-group">
+                            <label for="inputLogin" class="control-label">Type Compte : </label>
+                            <label class="radio-inline spacer2">
+                              <input type="radio" formControlName="type_compte" value="CC">
+                              Courant
+                            </label>
+                                          
+                            <label class="radio-inline spacer2"> 
+                              <input type="radio" formControlName="type_compte" value="CE"> 
+                              Epargne 
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLogin" class="control-label">Code Compte</label>
+                            <input type="text" class="form-control" placeholder="Enter code compte"
+                                  formControlName="code">
+                        </div>
+                        <div class="form-group" formGroupName="codeClient">
+                            <label for="inputLogin" class="control-label">Code Client</label>
+                            <input type="text" class="form-control" placeholder="Enter code client"
+                                  formControlName="id">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLogin" class="control-label">Solde</label>
+                            <input type="text" class="form-control" placeholder="Enter solde" formControlName="solde">
+                        </div>
+                        <div class="form-group" *ngIf="f.type_compte.value == 'CC'">
+                            <label for="inputPassword" class="control-label">Decouvert</label>
+                            <input type="text" class="form-control" placeholder="decouvert" formControlName="decouvert">
+                        </div>
+                        <div class="form-group" *ngIf="f.type_compte.value == 'CE'">
+                            <label for="inputPassword" class="control-label">Taux</label>
+                            <input type="text" class="form-control" id="inputPassword" placeholder="Taux"
+                                    formControlName="taux">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+            </div>
+        </div>
+    
+    </section>
+    </div>

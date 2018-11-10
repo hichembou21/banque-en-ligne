@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label for="inputCodeCompte">Code Compte</label>
                 <input type="text" class="form-control" id="inputCodeCompte" aria-describedby="emailHelp" placeholder="Enter code compte"
-                        [(ngModel)]="codeCompte" [ngModelOptions]="{standalone: true}" >
+                        [(ngModel)]="codeCompte1" [ngModelOptions]="{standalone: true}" >
             </div>
             
             <button type="submit" class="btn btn-primary" (click)="search()">Submit</button>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="col-md-6 col-sm-6 col-xs-12">
+  <div class="col-md-6 col-sm-6 col-xs-12 col-6">
     <div *ngIf="compte!=null">
         <div class="card border-secondary spacer">
             <div class="card-header">Info Compte </div>
@@ -62,19 +62,23 @@
                         Versement  
                       </label>
                                     
-                      <label class="radio-inline spacer2"> 
+                      <label class="radio-inline spacer2" *ngIf="isEmploye"> 
                         <input type="radio" [(ngModel)]="typeOperation" value="debiter"> 
                         Retrait 
                       </label>
                                             
-                      <label class="radio-inline spacer2"> 
+                      <label class="radio-inline spacer2" *ngIf="isEmploye"> 
                         <input type="radio" [(ngModel)]="typeOperation" value="virement">
                         Virement  
                       </label>
+                      <div class="form-group" *ngIf="typeOperation == 'virement'">
+                        <label>Compte bénéficiaire : </label>
+                        <input type="text" [(ngModel)]="codeCompte2">
+                      </div>   
                       <div class="form-group">
                         <label>Montant :</label>
                         <input type="text" [(ngModel)]="montant">
-                      </div>                                 
+                      </div>                            
                   </div>
     
                   <a class="btn btn-primary" (click)="addOperation()">Ok</a>

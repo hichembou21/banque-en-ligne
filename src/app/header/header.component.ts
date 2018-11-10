@@ -10,17 +10,15 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   isLogged:boolean = false;
-  user:any;
+  username:string;
   constructor(private authService : AuthenticationService, private router:Router) { }
 
   ngOnInit() {
     this.authService.getIsLogged().subscribe(isLogged =>{
       this.isLogged = isLogged;
-    })
+    });
 
-    this.authService.getUser().subscribe(user => {
-      this.user = user;
-    })
+    this.username = this.authService.getUsername();
   }
 
   onLogout() {

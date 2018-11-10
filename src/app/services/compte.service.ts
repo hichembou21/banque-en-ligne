@@ -31,4 +31,14 @@ export class CompteService {
     ));
   }
 
+  addCompte(compte, codeClient) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.jwtToken
+      })
+    };
+    return this.httpClient.post(`${this.baseUrl}${codeClient}`,compte, httpOptions);
+  }
+
 }

@@ -37,9 +37,13 @@ export class OperationsService {
                           ));
   }
 
-  addOperation(codeCompte, typeOperation, montant) {
+  addOperation(codeCompte, codeCompte2, typeOperation, montant) {
 
     let data = `codeCompte=${codeCompte}&montant=${parseFloat(montant)}&employe=1`;
+
+    if (typeOperation == 'virement') {
+      data = `codeCompte=${codeCompte}&codeCompte2=${codeCompte2}&montant=${parseFloat(montant)}&employe=1`;
+    }
 
     let httpOptions = {
       headers: new HttpHeaders({
