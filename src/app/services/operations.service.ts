@@ -13,12 +13,16 @@ export class OperationsService {
 
   operations = new BehaviorSubject<any>([null]);
   private jwtToken;
-
-  private baseUrl:string = "http://localhost:8080/operations";
+  private isEmploye:boolean=false;
+  private baseUrl:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/operations";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) { 
    
     this.jwtToken = this.authService.loadToken();
+    this.baseUrl = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/operations";
+    this.authService.isEmploye().subscribe(isEmp => {
+      this.isEmploye = isEmp;
+    });
   }
 
   getOperationsOfCompte(codeCompte, currentPage, sizePage) {
@@ -37,12 +41,16 @@ export class OperationsService {
                           ));
   }
 
-  addOperation(codeCompte, codeCompte2, typeOperation, montant) {
+  addOperation(codeCompte, codeCompte2, typeOperation, montant, employe) {
 
     let data = `codeCompte=${codeCompte}&montant=${parseFloat(montant)}&employe=1`;
 
     if (typeOperation == 'virement') {
-      data = `codeCompte=${codeCompte}&codeCompte2=${codeCompte2}&montant=${parseFloat(montant)}&employe=1`;
+      if (!this.isEmploye) {
+        employe = 1;
+      }
+      data = `codeCompte=${codeCompte}&codeCompte2=${codeCompte2}&montant=${parseFloat(montant)}&employe=${employe}`;
+      this.baseUrl = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/client/operations";
     }
 
     let httpOptions = {

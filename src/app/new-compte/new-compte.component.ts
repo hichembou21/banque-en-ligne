@@ -13,6 +13,7 @@ export class NewCompteComponent implements OnInit {
 
   currentUser:any;
   registerForm:FormGroup;
+  errorMessage:string;
 
   constructor(private formBuilder: FormBuilder, private compteService : CompteService, private authServce : AuthenticationService) { }
 
@@ -48,6 +49,8 @@ export class NewCompteComponent implements OnInit {
     this.registerForm.value.solde = parseFloat(this.registerForm.value.solde);
     this.compteService.addCompte(this.registerForm.value, id).subscribe(compte => {
       console.log(compte);
+    }, error => {
+      this.errorMessage = error.error.message;
     })
   }
 

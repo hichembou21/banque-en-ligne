@@ -11,7 +11,8 @@ export class CompteService {
 
   compte = new BehaviorSubject<any>([null])
   jwtToken:string="";
-  baseUrl:string = "http://localhost:8080/comptes/";
+  baseUrl:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/comptes/";
+  baseUrlforC:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/client/comptes/";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) {
     this.jwtToken = this.authService.loadToken();
@@ -25,6 +26,20 @@ export class CompteService {
       })
     };
     return this.httpClient.get(`${this.baseUrl}${codeCompte}`, httpOptions)
+    .pipe(tap(res => {
+      this.compte.next(res);
+    }
+    ));
+  }
+
+  getOneForClient(codeCompte, codeClient) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.jwtToken
+      })
+    };
+    return this.httpClient.get(`${this.baseUrlforC}${codeCompte}/${codeClient}`, httpOptions)
     .pipe(tap(res => {
       this.compte.next(res);
     }

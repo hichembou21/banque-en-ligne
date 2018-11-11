@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
         this.authService.saveToken(jwtToken);
         this.authService.setIsLogged(true);
         this.authService.setUsername(user.username);
+        this.authService.setUsernameForHeader(user.username);
         this.router.navigateByUrl("/account");
     }, error => {
         this.mode = 1;

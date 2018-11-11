@@ -10,13 +10,15 @@ export class AuthenticationService {
 
   private user:any;
   private username:string = "";
+  private usernameForHeader = new BehaviorSubject<string>(null);
   private jwtToken:string="";
   private isLogged = new BehaviorSubject<boolean>(false);
   private isEmpl = new BehaviorSubject<boolean>(false);
   private isAdm = new BehaviorSubject<boolean>(false);
   private roles:Array<any> = [];
   private message:string; 
-  private host:string = "http://localhost:8080";
+  //private host:string = "http://localhost:8080";
+  private host:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080";
 
   constructor(private httpClient : HttpClient) { }
 
@@ -32,12 +34,14 @@ export class AuthenticationService {
     localStorage.removeItem("user");
     localStorage.removeItem("isEmpl");
     localStorage.removeItem("isAdm");
+    localStorage.removeItem("username");
 
     this.setJwtToken(null);
     this.setIsLogged(false);
     this.setUser(null);
     this.isEmpl.next(false);
     this.isAdm.next(false);
+    this.username = null;
   }
 
   saveToken(jwtToken:string) {
@@ -76,6 +80,17 @@ export class AuthenticationService {
   setUsername(username) {
     localStorage.setItem("username", JSON.stringify(username));
     this.username = username;
+  }
+
+  setUsernameForHeader(username) {
+    this.usernameForHeader.next(username);
+  }
+
+  getUsernameForHeader() {
+    if (JSON.parse(localStorage.getItem("username"))) {
+      this.usernameForHeader.next(JSON.parse(localStorage.getItem("username"))); 
+    }
+    return this.usernameForHeader;
   }
 
   getIsLogged() {

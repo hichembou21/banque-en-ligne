@@ -2,3 +2,9 @@
 .clickable {
     cursor: pointer;
 }
+
+.error-message {
+    color: red;
+    opacity: 0.8;
+    font-weight: 400;
+}

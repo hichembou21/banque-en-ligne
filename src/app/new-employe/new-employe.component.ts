@@ -25,9 +25,7 @@ export class NewEmployeComponent implements OnInit {
 
     employe.employeSup = this.authService.getUser();
     this.clientService.addEmploye(employe).subscribe(res => {
-      console.log(employe);
       this.authService.setMessage("Employé ajouter avec succés");
-      console.log(this.authService.getMessage());
       this.router.navigateByUrl("/account");
     }, error => {
       this.errorMessage = error.error;

@@ -18,11 +18,14 @@ export class HeaderComponent implements OnInit {
       this.isLogged = isLogged;
     });
 
-    this.username = this.authService.getUsername();
+    this.authService.getUsernameForHeader().subscribe(username => {
+      this.username = username;
+    }) ;
   }
 
   onLogout() {
     this.authService.logout();
+    this.username = null;
     this.router.navigateByUrl("/login");
   }
 

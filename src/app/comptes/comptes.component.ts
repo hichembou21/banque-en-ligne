@@ -11,15 +11,20 @@ import { AuthenticationService } from '../services/authentication.service';
 export class ComptesComponent implements OnInit {
 
   operations:any = null;
+  currentUser:any
   compte:any = null;
   isEmploye:boolean = false;
   codeCompte1:string;
   codeCompte2:string;
-  typeOperation:string;
+  typeOperation:string = 'crediter';
   montant:number;
   currentPage:number = 0;
   sizePage:number = 5
   totalPages=[];
+  errorMessage:any = {
+    messageCpt : null,
+    messageOp : null
+  };
   // @Output() onClickEvent: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private operationService:OperationsService, private compteService:CompteService, private authService : AuthenticationService) 
@@ -30,24 +35,38 @@ export class ComptesComponent implements OnInit {
   ngOnInit() {
     this.authService.isEmploye().subscribe(isEmp => {
       this.isEmploye = isEmp;
+      if (!this.isEmploye) {
+        this.typeOperation = 'virement';
+      }
     });    
-    this.typeOperation = 'crediter';
+    this.currentUser = this.authService.getUser();
   }
 
   getCompte() {
-    this.compteService.getOne(this.codeCompte1).subscribe(data => {
-      this.compte = data;
-      console.log(this.compte);
-    }, error => {
+    this.compte = null;
+    this.currentPage = 0;
+    this.errorMessage.messageCpt = null;
+    this.errorMessage.messageOp = null;
 
-    });
+    if (this.isEmploye) {
+      this.compteService.getOne(this.codeCompte1).subscribe(data => {
+        this.compte = data;
+      }, error => {
+        this.errorMessage.messageCpt = error.error.message;
+      });
+    } else {
+      this.compteService.getOneForClient(this.codeCompte1, this.currentUser.id).subscribe(data => {
+        this.compte = data;
+      }, error => {
+        this.errorMessage.messageCpt = error.error.message;
+      });
+    }
   }
 
   getOperations() {
     this.operationService.getOperationsOfCompte(this.codeCompte1, this.currentPage, this.sizePage).subscribe(value => {
       this.operations = value;
       this.totalPages = new Array(this.operations.totalPages);
-      console.log(this.operations);
     }, error => {
 
     });
@@ -56,17 +75,18 @@ export class ComptesComponent implements OnInit {
   search() {
     this.getCompte();
     this.getOperations();    
-    console.log('ok search');
   }
 
   addOperation() {
   
-    this.operationService.addOperation(this.compte.code, this.codeCompte2, this.typeOperation,this.montant).subscribe(res => {
+    this.operationService.addOperation(this.compte.code, this.codeCompte2, this.typeOperation,this.montant, this.currentUser.id).subscribe(res => {
       if (res) {
         this.search();
       }
       this.typeOperation = 'crediter';
       this.codeCompte2 = null;
+    }, error => {
+      this.errorMessage.messageOp = error.error.message;
     });
   }
 

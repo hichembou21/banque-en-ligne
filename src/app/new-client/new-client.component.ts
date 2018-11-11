@@ -27,7 +27,6 @@ export class NewClientComponent implements OnInit {
       this.router.navigateByUrl("/account");
     }, error => {
       this.errorMessage = error.error;
-      console.log(user);
     });
 
   }

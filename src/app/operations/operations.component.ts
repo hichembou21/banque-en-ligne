@@ -28,7 +28,7 @@ export class OperationsComponent implements OnInit {
   }
 
   addOperation() {
-    this.operationService.addOperation(this.compte.code, this.compte.code,this.typeOperation,this.montant).subscribe();
+    //this.operationService.addOperation(this.compte.code, this.compte.code,this.typeOperation,this.montant).subscribe();
   }
 
   // onClick() {

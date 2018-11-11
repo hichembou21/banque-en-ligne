@@ -10,6 +10,9 @@
                 <input type="text" class="form-control" id="inputCodeCompte" aria-describedby="emailHelp" placeholder="Enter code compte"
                         [(ngModel)]="codeCompte1" [ngModelOptions]="{standalone: true}" >
             </div>
+            <div class="form-group error-message" *ngIf="errorMessage.messageCpt">
+              <label>{{errorMessage.messageCpt}}</label>
+            </div>
             
             <button type="submit" class="btn btn-primary" (click)="search()">Submit</button>
         </form>
@@ -57,7 +60,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     
-                      <label class="radio-inline spacer2">
+                      <label class="radio-inline spacer2" *ngIf="isEmploye">
                         <input type="radio" [(ngModel)]="typeOperation" value="crediter">
                         Versement  
                       </label>
@@ -67,7 +70,7 @@
                         Retrait 
                       </label>
                                             
-                      <label class="radio-inline spacer2" *ngIf="isEmploye"> 
+                      <label class="radio-inline spacer2"> 
                         <input type="radio" [(ngModel)]="typeOperation" value="virement">
                         Virement  
                       </label>
@@ -75,12 +78,14 @@
                         <label>Compte bénéficiaire : </label>
                         <input type="text" [(ngModel)]="codeCompte2">
                       </div>   
-                      <div class="form-group">
+                      <div class="form-group" *ngIf="typeOperation == 'virement' || typeOperation == 'debiter' || typeOperation == 'crediter'">
                         <label>Montant :</label>
                         <input type="text" [(ngModel)]="montant">
-                      </div>                            
+                      </div> 
+                      <div class="form-group error-message" *ngIf="errorMessage.messageOp">
+                        <label>{{errorMessage.messageOp}}</label>
+                      </div>                           
                   </div>
-    
                   <a class="btn btn-primary" (click)="addOperation()">Ok</a>
                 </div>
           </div>
