@@ -11,8 +11,9 @@ export class CompteService {
 
   compte = new BehaviorSubject<any>([null])
   jwtToken:string="";
-  baseUrl:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/comptes/";
-  baseUrlforC:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/client/comptes/";
+  baseUrl:string = "http://ec2-54-164-144-216.compute-1.amazonaws.com:8080/comptes/";
+  
+  baseUrlforC:string = "http://ec2-54-164-144-216.compute-1.amazonaws.com:8080/client/comptes/";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) {
     this.jwtToken = this.authService.loadToken();

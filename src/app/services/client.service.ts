@@ -12,7 +12,7 @@ export class ClientService {
   user:any;
   status:any;
   jwtToken:string = "";
-  baseUrl:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/";
+  baseUrl:string = "http://ec2-54-164-144-216.compute-1.amazonaws.com:8080/";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) {
     this.jwtToken = authService.getJwtToken();

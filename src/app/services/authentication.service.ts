@@ -18,7 +18,7 @@ export class AuthenticationService {
   private roles:Array<any> = [];
   private message:string; 
   //private host:string = "http://localhost:8080";
-  private host:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080";
+  private host:string = "http://ec2-54-164-144-216.compute-1.amazonaws.com:8080";
 
   constructor(private httpClient : HttpClient) { }
 

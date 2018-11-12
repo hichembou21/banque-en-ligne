@@ -14,12 +14,12 @@ export class OperationsService {
   operations = new BehaviorSubject<any>([null]);
   private jwtToken;
   private isEmploye:boolean=false;
-  private baseUrl:string = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/operations";
+  private baseUrl:string = "http://ec2-54-164-144-216.compute-1.amazonaws.com:8080/operations";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) { 
    
     this.jwtToken = this.authService.loadToken();
-    this.baseUrl = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/operations";
+    this.baseUrl = "http://ec2-54-164-144-216.compute-1.amazonaws.com:8080/operations";
     this.authService.isEmploye().subscribe(isEmp => {
       this.isEmploye = isEmp;
     });
@@ -50,7 +50,7 @@ export class OperationsService {
         employe = 1;
       }
       data = `codeCompte=${codeCompte}&codeCompte2=${codeCompte2}&montant=${parseFloat(montant)}&employe=${employe}`;
-      this.baseUrl = "http://ec2-100-24-4-240.compute-1.amazonaws.com:8080/client/operations";
+      this.baseUrl = "http://ec2-54-164-144-216.compute-1.amazonaws.com:8080/client/operations";
     }
 
     let httpOptions = {
