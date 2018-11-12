@@ -4,6 +4,7 @@
     margin: 5% auto;
 }
 
-body {
-    background-image: url('../../assets/background1.jpg');
+.background-login {
+    background-image: url('../../assets/background.jpg');
+    height: 500px;
 }

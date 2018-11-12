@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
+import { environment } from '../../environments/environment';
+
+const APIEndpoint = environment.backUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +14,9 @@ export class CompteService {
 
   compte = new BehaviorSubject<any>([null])
   jwtToken:string="";
-  baseUrl:string = "http://mabanqueenligne.us-east-1.elasticbeanstalk.com/comptes/";
+  baseUrl:string = APIEndpoint+"/comptes/";
   
-  baseUrlforC:string = "http://mabanqueenligne.us-east-1.elasticbeanstalk.com/client/comptes/";
+  baseUrlforC:string = APIEndpoint+"/client/comptes/";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) {
     this.jwtToken = this.authService.loadToken();

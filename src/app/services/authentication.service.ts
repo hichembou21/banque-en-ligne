@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
+
+const APIEndpoint = environment.backUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +21,13 @@ export class AuthenticationService {
   private roles:Array<any> = [];
   private message:string; 
   //private host:string = "http://localhost:8080";
-  private host:string = "http://mabanqueenligne.us-east-1.elasticbeanstalk.com";
+  //private host:string = "https://www.simplonlyon.fr/promo5/hbouaffar/certif";
 
   constructor(private httpClient : HttpClient) { }
 
   login(user) {
 
-    return this.httpClient.post(this.host+"/login",user,{observe:"response"});
+    return this.httpClient.post(APIEndpoint+"/login",user,{observe:"response"});
 
   }
 

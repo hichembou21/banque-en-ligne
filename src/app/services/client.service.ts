@@ -3,6 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
+
+const APIEndpoint = environment.backUrl;
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +16,7 @@ export class ClientService {
   user:any;
   status:any;
   jwtToken:string = "";
-  baseUrl:string = "http://mabanqueenligne.us-east-1.elasticbeanstalk.com/";
+  //baseUrl:string = "https://www.simplonlyon.fr/promo5/hbouaffar/certif/";
 
   constructor(private httpClient : HttpClient, private authService : AuthenticationService) {
     this.jwtToken = authService.getJwtToken();
@@ -27,7 +31,7 @@ export class ClientService {
         })
       };
 
-      return this.httpClient.get(this.baseUrl+"clients/"+username,
+      return this.httpClient.get(APIEndpoint+"/clients/"+username,
                                   httpOptions)
       .pipe(tap(res => {
         this.user = res; 
@@ -42,7 +46,7 @@ export class ClientService {
         })
       };
 
-      return this.httpClient.post(this.baseUrl+"clients",user,
+      return this.httpClient.post(APIEndpoint+"/clients",user,
                                   httpOptions)
       .pipe(tap(res => {
         this.status = res; 
@@ -57,7 +61,7 @@ export class ClientService {
         })
       };
 
-      return this.httpClient.post(this.baseUrl+"employes",user,
+      return this.httpClient.post(APIEndpoint+"/employes",user,
         httpOptions)
       .pipe(tap(res => {
       this.status = res; 

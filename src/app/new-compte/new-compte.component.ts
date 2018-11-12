@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CompteService } from '../services/compte.service';
 import { ClientService } from '../services/client.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-compte',
@@ -15,11 +16,11 @@ export class NewCompteComponent implements OnInit {
   registerForm:FormGroup;
   errorMessage:string;
 
-  constructor(private formBuilder: FormBuilder, private compteService : CompteService, private authServce : AuthenticationService) { }
+  constructor(private formBuilder: FormBuilder, private compteService : CompteService, private authService : AuthenticationService, private router : Router) { }
 
   ngOnInit() {
 
-    this.currentUser = this.authServce.getUser();
+    this.currentUser = this.authService.getUser();
     this.registerForm = this.formBuilder.group({
       type_compte: ['CC', [Validators.required]],
       code: ['', Validators.required],
@@ -48,7 +49,8 @@ export class NewCompteComponent implements OnInit {
     }
     this.registerForm.value.solde = parseFloat(this.registerForm.value.solde);
     this.compteService.addCompte(this.registerForm.value, id).subscribe(compte => {
-      console.log(compte);
+      this.authService.setMessage("Compte "+ this.registerForm.value.code +" ajouter avec succés")
+      this.router.navigateByUrl("/account");
     }, error => {
       this.errorMessage = error.error.message;
     })
