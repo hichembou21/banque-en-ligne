@@ -30,19 +30,27 @@
                     <h5 *ngIf="compte.type_compte == 'CC'">Compte Courrant</h5>
                     <h5 *ngIf="compte.type_compte == 'CE'">Compte Epargne</h5>
                     <div>
-                      <label>Date Creation : </label>
+                      <label>Code Compte : &nbsp;</label>
+                      <label>{{compte.code}}</label>
+                    </div>
+                    <div>
+                      <label>Client : &nbsp;</label>
+                      <label>{{compte.client.username}}</label>
+                    </div>
+                    <div>
+                      <label>Date Creation : &nbsp;</label>
                       <label>{{compte.dateCreation | date: 'dd/MM/yyyy h:mm a' }}</label>
                     </div>
                     <div>
-                      <label>Solde : </label>
+                      <label>Solde : &nbsp;</label>
                       <label>{{compte.solde}} €</label> 
                     </div>
                     <div *ngIf="compte.taux">
-                      <label>Taux : </label>
-                      <label>{{compte.taux}} €</label> 
+                      <label>Taux : &nbsp;</label>
+                      <label>{{compte.taux}} %</label> 
                     </div> 
                     <div *ngIf="compte.decouvert">
-                      <label>Decouvert : </label>
+                      <label>Decouvert : &nbsp;</label>
                       <label>{{compte.decouvert}} €</label> 
                     </div>              
             </div>
@@ -110,8 +118,8 @@
                     <th scope="row">{{op.numero}}</th>
                     <td>{{op.dateOperation | date: 'dd/MM/yyyy h:mm a' }}</td>
                     <td>{{op.montant}} €</td>
-                    <td>{{op.type_ops}}</td>
-
+                    <td *ngIf="op.type_ops == 'C'">{{op.type_ops}} +</td>
+                    <td *ngIf="op.type_ops == 'D'">{{op.type_ops}} -</td>
                   </tr>
               </tbody>
           </table>

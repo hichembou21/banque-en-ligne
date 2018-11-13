@@ -1,0 +1,50 @@
+
+.container-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.text-footer {
+    font-family: PT Sans,sans-serif;
+    text-decoration-style: none;
+    color: #000;
+}
+
+.text-footer:hover {
+    color: red;
+    opacity: .5;
+}
+
+.icons-rs {
+    align-self: flex-end;
+}
+
+.address {
+    font-family: "Open Sans", sans-serif, helvetica, arial, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    line-height: inherit;
+}
+
+.nom {
+    font-weight: 400;
+}
+
+.icon-fb1 {
+    background-color: white;
+    transform: scale(1);
+    /* Browser Variations: */
+    
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+}
+
+.icon-fb1:hover {
+    background-color: rgb(165, 171, 204);
+    transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -o-transform: scale(1.4);
+}
